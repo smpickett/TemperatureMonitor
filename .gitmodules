@@ -1,3 +1,6 @@
 [submodule "particle-ds18x20"]
 	path = particle-ds18x20
 	url = https://github.com/MORA99/particle-ds18x20.git
+[submodule "particle_ssdp_server"]
+	path = particle_ssdp_server
+	url = https://github.com/smpickett/particle_ssdp_server.git
