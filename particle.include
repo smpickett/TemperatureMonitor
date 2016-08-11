@@ -1,0 +1,11 @@
+.\SimpleExample.ino
+.\*.h
+.\*.cpp
+.\particle_ssdp_server\firmware\*.cpp
+.\particle_ssdp_server\firmware\*.h
+.\particle-ds18x20\firmware\*.cpp
+.\particle-ds18x20\firmware\*.h
+.\particle-MQTT\firmware\*.cpp
+.\particle-MQTT\firmware\*.h
+.\particle-SparkJson\firmware\*.cpp
+.\particle-SparkJson\firmware\*.h
