@@ -4,3 +4,9 @@
 [submodule "particle_ssdp_server"]
 	path = particle_ssdp_server
 	url = https://github.com/smpickett/particle_ssdp_server.git
+[submodule "particle-MQTT"]
+	path = particle-MQTT
+	url = https://github.com/hirotakaster/MQTT.git
+[submodule "particle-SparkJson"]
+	path = particle-SparkJson
+	url = https://github.com/menan/SparkJson.git
