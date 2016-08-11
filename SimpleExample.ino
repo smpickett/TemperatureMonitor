@@ -90,17 +90,7 @@ void loop(void)
 
     // --------------------------------
     // Temperature Reading Actions
-    if (read_temperature(temp_readings, 2))
-    {
-        // success
-        /*
-        log("[TEMP] read success!");
-        char resultstr[64];
-        sprintf(resultstr, "[0]:%f [1]:%f", temp_readings[0], temp_readings[1]);
-        log(resultstr);
-        */
-    }
-    else
+    if (!read_temperature(temp_readings, 2))
     {
         // Failure
         log("[TEMP] read failure");
@@ -148,7 +138,7 @@ void loop(void)
 
     // --------------------------------
     // SSDP Actions
-    //ssdpServer.processConnection();
+    ssdpServer.processConnection();
 }
 
 void log(char* msg)
