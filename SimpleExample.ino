@@ -192,7 +192,9 @@ bool read_temperature(float data[], int dataLen)
         {
             if (DS18X20_read_meas(&sensor_data_buffer[i*OW_ROMCODE_SIZE], &subzero, &cel, &cel_frac_bits) == DS18X20_OK)
             {
-                float val = (float)cel + ((float)(cel_frac_bits * DS18X20_FRACCONV) / 10000.0) * (subzero ? -1.0 : 1.0);
+                float val = (float)cel + ((float)(cel_frac_bits * DS18X20_FRACCONV) / 10000.0);
+                if (subzero != 0)
+                    val = val * -1.0;
                 data[i] = val;
             }
             else
