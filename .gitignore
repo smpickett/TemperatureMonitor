@@ -1,0 +1,13 @@
+# Ignore VIM files
+*~
+*sw*
+*.bin
+
+# Ignore build files
+*.bin
+buildoutput.txt
+user.deviceid.txt
+
+# Ignore credential files
+*credential*
+
