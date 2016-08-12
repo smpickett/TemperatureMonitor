@@ -42,6 +42,7 @@ void MQTTconnect(void);
 // == One Wire Setup ==
 #define OW_BUS_PIN  D0
 bool read_temperature(float data[], int dataLen);
+int OWlastUpdate = millis();
 
 //-------------------------------------------------------------------------------------------
 // == SSDP Setup ==
@@ -87,15 +88,20 @@ void MQTTconnect(void)
 void loop(void)
 {
     float temp_readings[] = {0.0, 0.0};
+    int now = millis();
 
     // --------------------------------
     // Temperature Reading Actions
-    if (!read_temperature(temp_readings, 2))
+    if (now - OWlastUpdate > 1000)
     {
-        // Failure
-        log("[TEMP] read failure");
-        temp_readings[0] = 99.99;
-        temp_readings[1] = 99.99;
+        OWlastUpdate = now;
+        if (!read_temperature(temp_readings, 2))
+        {
+            // Failure
+            log("[TEMP] read failure");
+            temp_readings[0] = 99.99;
+            temp_readings[1] = 99.99;
+        }
     }
 
     // --------------------------------
@@ -108,10 +114,9 @@ void loop(void)
     // Loop the MQTT client.
     MQTTclient.loop();
 
-    int now = millis();
-
-    // Publish state every 5 seconds.
-    if(now - MQTTlastUpdate > 5000) {
+    // Publish state every 10 seconds.
+    if(now - MQTTlastUpdate > 10000)
+    {
         MQTTlastUpdate = now;
 
         // Build the json payload:
@@ -133,8 +138,6 @@ void loop(void)
 
         MQTTclient.publish(MQTT_TOPIC_STATE, buffer);
     }
-
-    delay(1000);
 
     // --------------------------------
     // SSDP Actions
